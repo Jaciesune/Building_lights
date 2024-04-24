@@ -16,7 +16,6 @@ export default function Page() {
       <Card>
         <CardHeader>
           <CardTitle>Rejestracja</CardTitle>
-          <CardDescription>Zarejestruj nowe konto w banku.</CardDescription>
         </CardHeader>
 
         <RegisterForm />

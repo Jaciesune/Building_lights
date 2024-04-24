@@ -1,30 +1,19 @@
 "use client"
 
+import { LogOut } from "lucide-react"
+import { signOut } from "next-auth/react"
 import Link from "next/link"
-import React, { forwardRef } from "react"
+import React from "react"
 
-import { cn } from "@/lib/utils"
-
+import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-
-// import { signOut } from "next-auth/react"
-//     <li>
-//       <button
-//         type="button"
-//         onClick={() => signOut()}
-//       >
-//         Sign out
-//       </button>
 
 type Component = {
   title: string
@@ -34,41 +23,25 @@ type Component = {
 
 const components: Component[] = [
   {
-    title: "Przelewy",
-    href: "/dashboard/transfers",
-    description: "Zarządzaj swoimi przelewami.",
-  },
-  {
-    title: "Karty",
-    href: "/dashboard/cards",
-    description: "Zarządzaj swoimi kartami płatniczymi.",
-  },
-]
-
-const accountComponents: Component[] = [
-  {
-    title: "Zarządzaj kontem",
-    href: "/dashboard/account",
-    description: "Zarządzaj swoimi danymi osobowymi.",
+    title: "Urządzenia",
+    href: "/dashboard/devices",
+    description: "Zarządzaj swoimi urządzeniami.",
   },
   {
     title: "Ustawienia",
     href: "/dashboard/settings",
-    description: "Zarządzaj ustawieniami swojego konta.",
-  },
-  {
-    title: "Wyloguj",
-    href: "/api/auth/signout",
-    description: "Wyloguj się z konta.",
+    description: "Zarządzaj ustawieniami oświetlenia.",
   },
 ]
+
+const accountComponents: Component[] = []
 
 export default function UserNavigation() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Informacje</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Zarządzanie</NavigationMenuTrigger>
 
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
@@ -103,11 +76,10 @@ export default function UserNavigation() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Wyloguj
-            </NavigationMenuLink>
-          </Link>
+          <Button onClick={() => signOut()}>
+            Wyloguj
+            <LogOut size={18} className="ml-2" />
+          </Button>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
