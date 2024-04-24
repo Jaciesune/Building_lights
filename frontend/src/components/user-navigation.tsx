@@ -32,6 +32,11 @@ const components: Component[] = [
     href: "/dashboard/settings",
     description: "Zarządzaj ustawieniami oświetlenia.",
   },
+  {
+    title: "Konto",
+    href: "/dashboard/account",
+    description: "Zarządzaj swoim kontem.",
+  },
 ]
 
 const accountComponents: Component[] = []
@@ -59,7 +64,6 @@ export default function UserNavigation() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Konto</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               {accountComponents.map((component) => (

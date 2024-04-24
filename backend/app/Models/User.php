@@ -16,19 +16,13 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     use Notifiable;
 
     protected $fillable = [
-        'client_id',
         'first_name',
         'last_name',
         'email',
         'password',
-        'phone',
-        'birth_date',
-        'pesel',
-        'gender',
     ];
 
     protected $hidden = [
-        'client_id',
         'password',
         'remember_token',
     ];
@@ -48,5 +42,10 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     public function getJWTCustomClaims(): array
     {
         return [];
+    }
+
+    public function device()
+    {
+        return $this->belongsTo(Device::class);
     }
 }
