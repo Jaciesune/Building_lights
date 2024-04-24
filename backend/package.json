@@ -4,5 +4,8 @@
   },
   "scripts": {
     "prepare": "husky"
+  },
+  "dependencies": {
+    "@radix-ui/react-switch": "^1.0.3"
   }
 }

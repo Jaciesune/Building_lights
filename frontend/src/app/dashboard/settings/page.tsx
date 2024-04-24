@@ -2,6 +2,7 @@
 
 import { Label } from "@radix-ui/react-dropdown-menu"
 import { CirclePlus } from "lucide-react"
+import { Plus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -21,7 +22,13 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import { Slider } from "@/components/ui/slider"
+import { Switch } from "@/components/ui/switch"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 
 type SliderProps = React.ComponentProps<typeof Slider>
@@ -65,40 +72,85 @@ export default function Page() {
             </CardDescription>
           </CardHeader>
 
-          <CardContent>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button size="icon" variant="outline">
-                  <CirclePlus size={24} />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                  <DialogTitle>Edit profile</DialogTitle>
-                  <DialogDescription>
-                    Make changes to your profile here. Click save when you're
-                    done.
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="grid gap-4 py-4">
-                  <ToggleGroup type="multiple" className="flex flex-wrap gap-2">
-                    <ToggleGroupItem value="monday">
-                      Poniedziałek
-                    </ToggleGroupItem>
-                    <ToggleGroupItem value="tuesday">Wtorek</ToggleGroupItem>
-                    <ToggleGroupItem value="wednesday">Środa</ToggleGroupItem>
-                    <ToggleGroupItem value="thursday">Czwartek</ToggleGroupItem>
-                    <ToggleGroupItem value="friday">Piątek</ToggleGroupItem>
-                    <ToggleGroupItem value="saturday">Sobota</ToggleGroupItem>
-                    <ToggleGroupItem value="sunday">Niedziela</ToggleGroupItem>
-                  </ToggleGroup>
+          <div className="">
+            <CardContent>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="icon" variant="outline">
+                    <CirclePlus size={24} />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Ustaw dni działania</DialogTitle>
+                    <DialogDescription>
+                      Zaznacz dni działania ustawienia
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <ToggleGroup
+                      type="multiple"
+                      className="flex flex-wrap gap-2"
+                    >
+                      <ToggleGroupItem value="monday">
+                        Poniedziałek
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="tuesday">Wtorek</ToggleGroupItem>
+                      <ToggleGroupItem value="wednesday">Środa</ToggleGroupItem>
+                      <ToggleGroupItem value="thursday">
+                        Czwartek
+                      </ToggleGroupItem>
+                      <ToggleGroupItem value="friday">Piątek</ToggleGroupItem>
+                      <ToggleGroupItem value="saturday">Sobota</ToggleGroupItem>
+                      <ToggleGroupItem value="sunday">
+                        Niedziela
+                      </ToggleGroupItem>
+                    </ToggleGroup>
+                  </div>
+                  <DialogFooter>
+                    <Button type="submit">Zapisz zmiany</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </CardContent>
+
+            {/* Popover */}
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline">Godziny pracy</Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80">
+                <div className="grid gap-4">
+                  <div className="space-y-2">
+                    <h4 className="font-medium leading-none">Ustaw Godzinę</h4>
+                  </div>
+                  <div className="grid gap-4">
+                    <div className="grid grid-cols-3 items-center gap-4">
+                      <Label>Uruchomienia:</Label>
+                      <Input
+                        id="width"
+                        defaultValue="20:00"
+                        className="col-span-2 h-8"
+                      />
+                      <Label>Wyłączenia:</Label>
+                      <Input
+                        id="width"
+                        defaultValue="23:30"
+                        className="col-span-2 h-8"
+                      />
+                    </div>
+                    {/* Pozostałe opcje */}
+                  </div>
                 </div>
-                <DialogFooter>
-                  <Button type="submit">Save changes</Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-          </CardContent>
+              </PopoverContent>
+            </Popover>
+            <div className="flex items-center space-x-2">
+              <Switch />
+            </div>
+            <Button>
+              <Plus className="size-4" />
+            </Button>
+          </div>
         </Card>
       </div>
     </div>
