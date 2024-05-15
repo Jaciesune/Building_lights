@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <button class="menu-btn" onclick="toggleSidebar()">Menu</button>
+        <div class="sidebar" id="sidebar">
+            <button class="close-btn" onclick="toggleSidebar()">X</button>
+            <p>Welcome, <?php echo $username; ?>!</p>
+            <button onclick="logout()">Wyloguj</button>
+        </div>
+    </div>
+    <div class="content">
+        <!-- Treść strony głównej -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
