@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Settings</title>
+    <style>
+        /* Styl dla całej strony */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center; /* Wyśrodkowanie zawartości na stronie */
+            align-items: center; /* Wyśrodkowanie zawartości na stronie */
+            background-color: lightgray; /* Tło strony */
+        }
+
+        /* Styl dla diva zawierającego zawartość */
+        .content-div {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            background-color: #ddd;
+        }
+
+        /* Styl dla diva z zawartością godzina, dzień i on/off */
+        .zadanie {
+            padding: 10px; /* Padding wokół diva */
+            border-radius: 10px; /* Zaokrąglenie rogów */
+            background-color: #fff; /* Tło diva z zawartością */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .zadanie input[type="time"] {
+            width: 100px;
+            margin-right: 10px;
+        }
+
+        .zadanie label {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Div na zawartość wyśrodkowany na lewej stronie -->
+    <div class="content-div">
+        <h3>Włączanie</h3>
+        <button onclick="dodajZadanie()">+</button>
+        <div id="zadania"></div>
+    </div>
+
+    <script>
+        function dodajZadanie() {
+            var div = document.createElement("div");
+            div.className = "zadanie";
+
+            var godzinaInput = document.createElement("input");
+            godzinaInput.type = "time";
+            godzinaInput.name = "godzina";
+
+            var checkboxy = document.createElement("div");
+            for (var i = 1; i <= 7; i++) {
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = "dzienTygodnia";
+                checkbox.value = i;
+                var dzienLabel = document.createElement("label");
+                dzienLabel.textContent = skrotDniaTygodnia(i);
+                checkboxy.appendChild(checkbox);
+                checkboxy.appendChild(dzienLabel);
+            }
+
+            var onOffButton = document.createElement("button");
+            onOffButton.textContent = "On/Off";
+
+            div.appendChild(godzinaInput);
+            div.appendChild(checkboxy);
+            div.appendChild(onOffButton);
+
+            document.getElementById("zadania").appendChild(div);
+        }
+
+        function skrotDniaTygodnia(dzien) {
+            switch (dzien) {
+                case 1:
+                    return "pn";
+                case 2:
+                    return "wt";
+                case 3:
+                    return "śr";
+                case 4:
+                    return "czw";
+                case 5:
+                    return "pt";
+                case 6:
+                    return "sob";
+                case 7:
+                    return "niedz";
+            }
+        }
+    </script>
+</body>
+
+</html>

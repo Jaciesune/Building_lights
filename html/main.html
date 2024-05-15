@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Dodajemy Font Awesome dla ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Dodatkowe style dla nowego diva 'urzadzenie' */
+        .urzadzenie {
+            background-color: lightgray;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .urzadzenie .info {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .urzadzenie .nazwa {
+            flex-grow: 1;
+        }
+
+        .urzadzenie .status {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .urzadzenie .opcje {
+            text-align: right;
+            flex-grow: 1;
+        }
+
+        /* Styl dla przycisku z ikoną */
+        .opcje a {
+            color: black; /* Kolor tekstu */
+            text-decoration: none; /* Usunięcie podkreślenia */
+        }
+
+        .opcje a:hover {
+            color: darkblue; /* Kolor tekstu po najechaniu */
+        }
+    </style>
+    <script>
+        var numerUrzadzenia = 1;
+
+        function dodajUrzadzenie() {
+            var nazwaUrzadzenia = "Urzadzenie " + numerUrzadzenia;
+            var status = "Działa";
+
+            var div = document.createElement("div");
+            div.className = "urzadzenie";
+
+            var infoDiv = document.createElement("div");
+            infoDiv.className = "info";
+
+            var nazwaDiv = document.createElement("div");
+            nazwaDiv.className = "nazwa";
+            nazwaDiv.textContent = nazwaUrzadzenia;
+
+            var statusDiv = document.createElement("div");
+            statusDiv.className = "status";
+            statusDiv.textContent = status;
+
+            var opcjeDiv = document.createElement("div");
+            opcjeDiv.className = "opcje";
+            var opcjeLink = document.createElement("a");
+            opcjeLink.href = "device_settings.html";
+            opcjeLink.innerHTML = '<i class="fas fa-cogs"></i>'; // Ikona zębatki z Font Awesome
+            opcjeDiv.appendChild(opcjeLink);
+
+            infoDiv.appendChild(nazwaDiv);
+            infoDiv.appendChild(statusDiv);
+            infoDiv.appendChild(opcjeDiv);
+
+            div.appendChild(infoDiv);
+
+            document.body.appendChild(div);
+
+            numerUrzadzenia++;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="navbar">
+        <button class="menu-btn" onclick="toggleSidebar()">Konto</button>
+        <button class="add-btn" onclick="dodajUrzadzenie()">+</button>
+        <div class="sidebar" id="sidebar">
+            <button class="close-btn" onclick="toggleSidebar()">X</button>
+            <!-- Placeholder na nazwę użytkownika -->
+            <p id="username"></p>
+            <button onclick="logout()">Wyloguj</button>
+        </div>
+    </div>
+    <div class="content">
+        <!-- Treść strony głównej -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
