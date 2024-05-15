@@ -46,3 +46,38 @@
     right: 10px;
     cursor: pointer;
 }
+
+.urzadzenie {
+    background-color: lightgray;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.urzadzenie .info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.urzadzenie .nazwa {
+    flex-grow: 1;
+}
+
+.urzadzenie .status {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.urzadzenie .opcje {
+    text-align: right;
+    flex-grow: 1;
+}
+
+/* Styl dla przycisku z ikoną */
+.opcje a {
+    color: black;
+    text-decoration: none;
+}
+
+.opcje a:hover {
+    color: darkblue;
+}
