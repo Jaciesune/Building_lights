@@ -45,21 +45,86 @@
         .zadanie label {
             margin-right: 5px;
         }
+
+        /* Stylowanie przycisku On/Off */
+        .on {
+            background-color: green;
+            color: white;
+        }
+
+        .off {
+            background-color: red;
+            color: white;
+        }
+
+        /* Stylowanie pola select */
+        select {
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* Stylowanie diva z ustawieniami */
+        .ustawienia {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        /* Stylowanie suwaka */
+        .suwak {
+            margin-top: 10px;
+        }
+
+        .suwak label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .suwak input[type="range"] {
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
     <!-- Div na zawartość wyśrodkowany na lewej stronie -->
     <div class="content-div">
-        <h3>Włączanie</h3>
+        <h3>Harmonogram</h3> <!-- Zmiana napisu na "Harmonogram" -->
         <button onclick="dodajZadanie()">+</button>
         <div id="zadania"></div>
+
+        <!-- Div z suwakami -->
+        <div class="ustawienia">
+            <h3>Ustawienia</h3>
+            <div class="suwak">
+                <label for="jasnosc">Jasność:</label>
+                <input type="range" id="jasnosc" name="jasnosc" min="0" max="100" value="50">
+            </div>
+            <div class="suwak">
+                <label for="cieplo">Temperatura koloru:</label>
+                <input type="range" id="cieplo" name="cieplo" min="3500" max="6500" value="5000">
+            </div>
+        </div>
     </div>
 
     <script>
         function dodajZadanie() {
             var div = document.createElement("div");
             div.className = "zadanie";
+
+            var urzadzenieSelect = document.createElement("select");
+            urzadzenieSelect.name = "urzadzenie";
+
+            var uruchomioneOption = document.createElement("option");
+            uruchomioneOption.value = "uruchomione";
+            uruchomioneOption.textContent = "Uruchomione";
+            urzadzenieSelect.appendChild(uruchomioneOption);
+
+            var wylaczoneOption = document.createElement("option");
+            wylaczoneOption.value = "wylaczone";
+            wylaczoneOption.textContent = "Wyłączone";
+            urzadzenieSelect.appendChild(wylaczoneOption);
 
             var godzinaInput = document.createElement("input");
             godzinaInput.type = "time";
@@ -78,8 +143,21 @@
             }
 
             var onOffButton = document.createElement("button");
-            onOffButton.textContent = "On/Off";
+            onOffButton.textContent = "On"; // Domyślnie ustawione na "On"
+            onOffButton.className = "on"; // Dodanie klasy "on" jako domyślnego stanu przycisku
 
+            // Obsługa kliknięcia przycisku On/Off
+            onOffButton.onclick = function() {
+                if (onOffButton.textContent === "On") {
+                    onOffButton.textContent = "Off";
+                    onOffButton.className = "off"; // Zmiana klasy na "off" po wyłączeniu
+                } else {
+                    onOffButton.textContent = "On";
+                    onOffButton.className = "on"; // Zmiana klasy na "on" po włączeniu
+                }
+            };
+
+            div.appendChild(urzadzenieSelect); // Dodanie pola select
             div.appendChild(godzinaInput);
             div.appendChild(checkboxy);
             div.appendChild(onOffButton);

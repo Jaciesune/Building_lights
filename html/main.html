@@ -37,6 +37,14 @@
             opcjeLink.innerHTML = '<i class="fas fa-cogs"></i>'; // Ikona zębatki z Font Awesome
             opcjeDiv.appendChild(opcjeLink);
 
+            // Dodanie przycisku "-" do usuwania urządzenia
+            var usunBtn = document.createElement("button");
+            usunBtn.textContent = "-";
+            usunBtn.onclick = function() {
+                div.remove(); // Usunięcie diva zawierającego urządzenie
+            };
+            opcjeDiv.appendChild(usunBtn);
+
             infoDiv.appendChild(nazwaDiv);
             infoDiv.appendChild(statusDiv);
             infoDiv.appendChild(opcjeDiv);
